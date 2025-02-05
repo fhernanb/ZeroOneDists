@@ -61,7 +61,7 @@ BER <- function (mu.link="logit", sigma.link="log", nu.link="logit"){
                  nu.dr    = vstats$mu.eta,
 
                  # First derivates
-                 dldm = function(y, mu, sigma) {
+                 dldm = function(y, mu, sigma, nu) {
                    dm   <- gamlss::numeric.deriv(dBER(y, mu, sigma, nu, log=TRUE),
                                                  theta="mu",
                                                  delta=0.00001)
@@ -69,7 +69,7 @@ BER <- function (mu.link="logit", sigma.link="log", nu.link="logit"){
                    dldm
                  },
 
-                 dldd = function(y, mu, sigma) {
+                 dldd = function(y, mu, sigma, nu) {
                    dd   <- gamlss::numeric.deriv(dBER(y, mu, sigma, nu, log=TRUE),
                                                  theta="sigma",
                                                  delta=0.00001)
@@ -77,7 +77,7 @@ BER <- function (mu.link="logit", sigma.link="log", nu.link="logit"){
                    dldd
                  },
 
-                 dldv = function(y, mu, sigma) {
+                 dldv = function(y, mu, sigma, nu) {
                    dv   <- gamlss::numeric.deriv(dBER(y, mu, sigma, nu, log=TRUE),
                                                  theta="nu",
                                                  delta=0.00001)
@@ -87,7 +87,7 @@ BER <- function (mu.link="logit", sigma.link="log", nu.link="logit"){
 
                  # Second derivates
 
-                 d2ldm2 = function(y, mu, sigma) {
+                 d2ldm2 = function(y, mu, sigma, nu) {
                    dm   <- gamlss::numeric.deriv(dBER(y, mu, sigma, nu, log=TRUE),
                                                  theta="mu",
                                                  delta=0.00001)
@@ -97,7 +97,7 @@ BER <- function (mu.link="logit", sigma.link="log", nu.link="logit"){
                    d2ldm2
                  },
 
-                 d2ldd2  = function(y, mu, sigma) {
+                 d2ldd2  = function(y, mu, sigma, nu) {
                    dd   <- gamlss::numeric.deriv(dBER(y, mu, sigma, nu, log=TRUE),
                                                  theta="sigma",
                                                  delta=0.00001)
@@ -107,7 +107,7 @@ BER <- function (mu.link="logit", sigma.link="log", nu.link="logit"){
                    d2ldd2
                  },
 
-                 d2ldv2  = function(y, mu, sigma) {
+                 d2ldv2  = function(y, mu, sigma, nu) {
                    dv   <- gamlss::numeric.deriv(dBER(y, mu, sigma, nu, log=TRUE),
                                                  theta="nu",
                                                  delta=0.00001)
@@ -117,7 +117,7 @@ BER <- function (mu.link="logit", sigma.link="log", nu.link="logit"){
                    d2ldv2
                  },
 
-                 d2ldmdd = function(y, mu, sigma) {
+                 d2ldmdd = function(y, mu, sigma, nu) {
                    dm   <- gamlss::numeric.deriv(dBER(y, mu, sigma, nu, log=TRUE),
                                                  theta="mu",
                                                  delta=0.00001)
@@ -132,7 +132,7 @@ BER <- function (mu.link="logit", sigma.link="log", nu.link="logit"){
                    d2ldmdd
                  },
 
-                 d2ldmdv = function(y, mu, sigma) {
+                 d2ldmdv = function(y, mu, sigma, nu) {
                    dm   <- gamlss::numeric.deriv(dBER(y, mu, sigma, nu, log=TRUE),
                                                  theta="mu",
                                                  delta=0.00001)
@@ -147,7 +147,7 @@ BER <- function (mu.link="logit", sigma.link="log", nu.link="logit"){
                    d2ldmdv
                  },
 
-                 d2ldddv = function(y, mu, sigma) {
+                 d2ldddv = function(y, mu, sigma, nu) {
                    dd   <- gamlss::numeric.deriv(dBER(y, mu, sigma, nu, log=TRUE),
                                                  theta="sigma",
                                                  delta=0.00001)
@@ -173,7 +173,7 @@ BER <- function (mu.link="logit", sigma.link="log", nu.link="logit"){
                  sigma.valid = function(sigma) all(sigma > 0),
                  nu.valid    = function(nu)    all(nu > 0 & nu < 1),
 
-                 mean = function(mu, nu) nu/2 + (1-nu)*mu,
+                 mean = function(mu, nu) {nu/2 + (1-nu)*mu},
 
                  y.valid = function(y) all(y > 0)
 
