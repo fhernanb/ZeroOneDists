@@ -1,6 +1,6 @@
 #' Beta Rectangular distribution
 #'
-#' @author Karina Maria Garay, \email{kgarayo@unal.edu.co }
+#' @author Karina Maria Garay, \email{kgarayo@unal.edu.co}
 #'
 #' @description
 #' These functions define the density, distribution function, quantile
@@ -19,7 +19,7 @@
 #' @references
 #' Bayes, C. L., Bazán, J. L., & García, C. (2012). A new robust regression model for proportions. Bayesian Analysis, 7(4), 841-866.
 #'
-#' @seealso \link{dnorm}.
+#' @seealso \link{BER}.
 #'
 #' @details
 #' The Beta Rectangular distribution with parameters \eqn{\mu}, \eqn{\sigma} and \eqn{\nu}
@@ -27,7 +27,7 @@
 #'
 #' \eqn{f(x| \mu, \sigma, \nu) = \nu + (1 - \nu) b(x| \mu, \sigma)}
 #'
-#' for \eqn{0 < x x 1}, \eqn{0 < \mu < 1}, \eqn{\sigma > 0} and \eqn{0 < \nu < 1}.
+#' for \eqn{0 < x < 1}, \eqn{0 < \mu < 1}, \eqn{\sigma > 0} and \eqn{0 < \nu < 1}.
 #' The function \eqn{b(.)} corresponds to the traditional beta distribution
 #' that can be computed by \code{dbeta(x, shape1=mu*sigma, shape2=(1-mu)*sigma)}.
 #'
@@ -37,9 +37,9 @@
 #' @importFrom stats dbeta
 dBER <- function(x, mu, sigma, nu, log=FALSE) {
   if (any(x < 0 | x > 1)) stop("x must be in the interval (0, 1)")
-  if (mu < 0 || mu > 1) stop("mu must be in the interval (0, 1)")
-  if (sigma < 0)        stop("sigma must be positive")
-  if (nu < 0 || nu > 1) stop("nu must be in the interval [0, 1]")
+  if (any(mu < 0 | mu > 1)) stop("mu must be in the interval (0, 1)")
+  if (any(sigma < 0))       stop("sigma must be positive")
+  if (any(nu < 0 | nu > 1)) stop("nu must be in the interval [0, 1]")
 
   B_value <- dbeta(x, shape1=mu*sigma, shape2=(1-mu)*sigma)
   res <- nu + (1 - nu) * B_value
@@ -54,9 +54,9 @@ dBER <- function(x, mu, sigma, nu, log=FALSE) {
 #' @rdname dBER
 pBER <- function(q, mu, sigma, nu, lower.tail = TRUE, log.p = FALSE) {
   if (any(q < 0 | q > 1)) stop("q must be in the interval (0, 1)")
-  if (mu < 0 || mu > 1) stop("mu must be in the interval (0, 1)")
-  if (sigma < 0)        stop("sigma must be positive")
-  if (nu < 0 || nu > 1) stop("nu must be in the interval [0, 1]")
+  if (any(mu < 0 | mu > 1)) stop("mu must be in the interval (0, 1)")
+  if (any(sigma < 0))       stop("sigma must be positive")
+  if (any(nu < 0 | nu > 1)) stop("nu must be in the interval [0, 1]")
 
   B_value <- pbeta(q=q, shape1=mu*sigma, shape2=(1-mu)*sigma)
   cdf <- nu * q + (1 - nu) * B_value
@@ -74,9 +74,9 @@ pBER <- function(q, mu, sigma, nu, lower.tail = TRUE, log.p = FALSE) {
 #' @rdname dBER
 qBER <- function(p, mu, sigma, nu, lower.tail = TRUE, log.p = FALSE) {
   if (any(p < 0 | p > 1)) stop("p must be in the interval (0, 1)")
-  if (mu < 0 || mu > 1) stop("mu must be in the interval (0, 1)")
-  if (sigma < 0)        stop("sigma must be positive")
-  if (nu < 0 || nu > 1) stop("nu must be in the interval [0, 1]")
+  if (any(mu < 0 | mu > 1)) stop("mu must be in the interval (0, 1)")
+  if (any(sigma < 0))       stop("sigma must be positive")
+  if (any(nu < 0 | nu > 1)) stop("nu must be in the interval [0, 1]")
 
   if (log.p == TRUE)
     p <- exp(p)
@@ -99,9 +99,9 @@ qBER <- Vectorize(qBER)
 #' @importFrom stats runif
 #' @rdname dBER
 rBER <- function(n, mu, sigma, nu){
-  if (mu < 0 || mu > 1) stop("mu must be in the interval (0, 1)")
-  if (sigma < 0)        stop("sigma must be positive")
-  if (nu < 0 || nu > 1) stop("nu must be in the interval [0, 1]")
+  if (any(mu < 0 | mu > 1)) stop("mu must be in the interval (0, 1)")
+  if (any(sigma < 0))       stop("sigma must be positive")
+  if (any(nu < 0 | nu > 1)) stop("nu must be in the interval [0, 1]")
   u <- runif(n)
   return(qBER(p=u, mu=mu, sigma=sigma, nu=nu))
 }
