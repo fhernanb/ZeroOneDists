@@ -43,7 +43,8 @@ has a support in \eqn{(0, 1)} and density given by
 
 \eqn{f(x| \mu, \sigma, \nu) = \nu + (1 - \nu) b(x| \mu, \sigma)}
 
-where \eqn{b()} corresponds to the traditional beta distribution
+for \eqn{0 < x x 1}, \eqn{0 < \mu < 1}, \eqn{\sigma > 0} and \eqn{0 < \nu < 1}.
+The function \eqn{b(.)} corresponds to the traditional beta distribution
 that can be computed by \code{dbeta(x, shape1=mu*sigma, shape2=(1-mu)*sigma)}.
 }
 \examples{

@@ -27,7 +27,8 @@
 #'
 #' \eqn{f(x| \mu, \sigma, \nu) = \nu + (1 - \nu) b(x| \mu, \sigma)}
 #'
-#' where \eqn{b()} corresponds to the traditional beta distribution
+#' for \eqn{0 < x x 1}, \eqn{0 < \mu < 1}, \eqn{\sigma > 0} and \eqn{0 < \nu < 1}.
+#' The function \eqn{b(.)} corresponds to the traditional beta distribution
 #' that can be computed by \code{dbeta(x, shape1=mu*sigma, shape2=(1-mu)*sigma)}.
 #'
 #' @example examples/examples_dBER.R
@@ -37,7 +38,7 @@
 dBER <- function(x, mu, sigma, nu, log=FALSE) {
   if (any(x < 0 | x > 1)) stop("x must be in the interval (0, 1)")
   if (mu < 0 || mu > 1) stop("mu must be in the interval (0, 1)")
-  if (sigma < 0) stop("sigma must be positive")
+  if (sigma < 0)        stop("sigma must be positive")
   if (nu < 0 || nu > 1) stop("nu must be in the interval [0, 1]")
 
   B_value <- dbeta(x, shape1=mu*sigma, shape2=(1-mu)*sigma)
@@ -54,13 +55,19 @@ dBER <- function(x, mu, sigma, nu, log=FALSE) {
 pBER <- function(q, mu, sigma, nu, lower.tail = TRUE, log.p = FALSE) {
   if (any(q < 0 | q > 1)) stop("q must be in the interval (0, 1)")
   if (mu < 0 || mu > 1) stop("mu must be in the interval (0, 1)")
-  if (sigma < 0) stop("sigma must be positive")
+  if (sigma < 0)        stop("sigma must be positive")
   if (nu < 0 || nu > 1) stop("nu must be in the interval [0, 1]")
 
   B_value <- pbeta(q=q, shape1=mu*sigma, shape2=(1-mu)*sigma)
-  res <- nu * q + (1 - nu) * B_value
+  cdf <- nu * q + (1 - nu) * B_value
 
-  return(res)
+  if (lower.tail == TRUE)
+    cdf <- cdf
+  else cdf = 1 - cdf
+  if (log.p == FALSE)
+    cdf <- cdf
+  else cdf <- log(cdf)
+  return(cdf)
 }
 #' @export
 #' @importFrom stats pbeta uniroot
@@ -68,8 +75,15 @@ pBER <- function(q, mu, sigma, nu, lower.tail = TRUE, log.p = FALSE) {
 qBER <- function(p, mu, sigma, nu, lower.tail = TRUE, log.p = FALSE) {
   if (any(p < 0 | p > 1)) stop("p must be in the interval (0, 1)")
   if (mu < 0 || mu > 1) stop("mu must be in the interval (0, 1)")
-  if (sigma < 0) stop("sigma must be positive")
+  if (sigma < 0)        stop("sigma must be positive")
   if (nu < 0 || nu > 1) stop("nu must be in the interval [0, 1]")
+
+  if (log.p == TRUE)
+    p <- exp(p)
+  else p <- p
+  if (lower.tail == TRUE)
+    p <- p
+  else p <- 1 - p
 
   aux_fun <- function(x, p, mu, sigma, nu){
     res <- p-nu*x-(1-nu)*pbeta(q=x, shape1=mu*sigma, shape2=(1-mu)*sigma)
@@ -86,7 +100,7 @@ qBER <- Vectorize(qBER)
 #' @rdname dBER
 rBER <- function(n, mu, sigma, nu){
   if (mu < 0 || mu > 1) stop("mu must be in the interval (0, 1)")
-  if (sigma < 0) stop("sigma must be positive")
+  if (sigma < 0)        stop("sigma must be positive")
   if (nu < 0 || nu > 1) stop("nu must be in the interval [0, 1]")
   u <- runif(n)
   return(qBER(p=u, mu=mu, sigma=sigma, nu=nu))
