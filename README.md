@@ -1,6 +1,10 @@
 
 # ZeroOneDists <img src="docs/logo.png" align="right" alt="" width="120" />
 
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/fhernanb/OneZeroDists/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/fhernanb/OneZeroDists/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
+
 In this package are available new Zero One statistical distributions. With this package it is possible to estimate parameters and fit regression models within GAMLSS framework.
 
 ## Installation
