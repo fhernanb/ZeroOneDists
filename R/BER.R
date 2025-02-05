@@ -173,7 +173,7 @@ BER <- function (mu.link="logit", sigma.link="log", nu.link="logit"){
                  sigma.valid = function(sigma) all(sigma > 0),
                  nu.valid    = function(nu)    all(nu > 0 & nu < 1),
 
-                 mean = function(mu, sigma, nu) mu/2 + (1-nu)*mu,
+                 mean = function(mu, nu) nu/2 + (1-nu)*mu,
 
                  y.valid = function(y) all(y > 0)
 
