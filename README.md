@@ -1,5 +1,5 @@
 
-# ZeroOneDists <img src="man/figures/logo.png" align="right" alt="" width="120" />
+# ZeroOneDists <img src="docs/logo.png" align="right" alt="" width="120" />
 
 In this package are available new Zero One statistical distributions. With this package it is possible to estimate parameters and fit regression models within GAMLSS framework.
 
