@@ -175,8 +175,7 @@ BER <- function (mu.link="logit", sigma.link="log", nu.link="logit"){
 
                  mean = function(mu, nu) {nu/2 + (1-nu)*mu},
 
-                 y.valid = function(y) all(y > 0)
-
+                 y.valid = function(y) all(y > 0 & y < 1)
 
   ),
   class=c("gamlss.family", "family"))
