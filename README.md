@@ -1,9 +1,12 @@
 
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/fhernanb/ZeroOneDists/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/fhernanb/ZeroOneDists/actions/workflows/R-CMD-check.yaml)
+[![CRAN status](https://www.r-pkg.org/badges/version/ZeroOneDists)](https://CRAN.R-project.org/package=ZeroOneDists)
+[![](http://cranlogs.r-pkg.org/badges/grand-total/ZeroOneDists?color=blue)](https://cran.r-project.org/package=ZeroOneDists)
+<!-- badges: end -->
+
 # ZeroOneDists <img src="docs/logo.png" align="right" alt="" width="120" />
 
-<!-- badges: start -->
-[![R-CMD-check](https://github.com/fhernanb/OneZeroDists/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/fhernanb/OneZeroDists/actions/workflows/R-CMD-check.yaml)
-<!-- badges: end -->
 
 In this package are available new Zero One statistical distributions. With this package it is possible to estimate parameters and fit regression models within GAMLSS framework.
 
