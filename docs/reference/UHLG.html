@@ -101,7 +101,7 @@ has density given by</p>
 <span class="r-in"><span><span class="co"># using the inverse link function</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">mod1</span>, what<span class="op">=</span><span class="st">"mu"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     7.12861 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    7.453204 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Example 2</span></span></span>
 <span class="r-in"><span><span class="co"># Generating random values under some model</span></span></span>
@@ -120,8 +120,8 @@ has density given by</p>
 <span class="r-in"><span><span class="va">mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gamlss/man/gamlss.html" class="external-link">gamlss</a></span><span class="op">(</span><span class="va">y</span><span class="op">~</span><span class="va">x1</span><span class="op">+</span><span class="va">x2</span>,</span></span>
 <span class="r-in"><span>               family<span class="op">=</span><span class="va">UHLG</span>, data<span class="op">=</span><span class="va">datos</span>,</span></span>
 <span class="r-in"><span>               control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/gamlss/man/gamlss.control.html" class="external-link">gamlss.control</a></span><span class="op">(</span>n.cyc<span class="op">=</span><span class="fl">500</span>, trace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> GAMLSS-RS iteration 1: Global Deviance = -1653.112 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> GAMLSS-RS iteration 2: Global Deviance = -1653.112 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GAMLSS-RS iteration 1: Global Deviance = -1433.922 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GAMLSS-RS iteration 2: Global Deviance = -1433.922 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod2</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>summary: vcov has failed, option qr is used instead</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ******************************************************************</span>
@@ -137,11 +137,11 @@ has density given by</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Mu link function:  log</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Mu Coefficients:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error t value Pr(&gt;|t|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -0.3844     0.2954  -1.301    0.193    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x1            3.0058     0.4186   7.180 8.01e-13 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x2           -2.8201     0.4187  -6.735 1.83e-11 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -0.5902     0.3047  -1.937   0.0528 .  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x1            3.2639     0.4331   7.536 5.74e-14 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x2           -2.4966     0.4301  -5.805 6.83e-09 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ------------------------------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> No. of observations in the fit:  5000 </span>
@@ -149,9 +149,9 @@ has density given by</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Residual Deg. of Freedom:  4997 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                       at cycle:  2 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Global Deviance:     -1653.112 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             AIC:     -1647.112 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             SBC:     -1627.56 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Global Deviance:     -1433.922 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             AIC:     -1427.922 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             SBC:     -1408.371 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ******************************************************************</span>
 </code></pre></div>
     </div>
@@ -167,7 +167,7 @@ has density given by</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
 </div>
 
       </footer></div>

@@ -5,7 +5,7 @@
 [![](http://cranlogs.r-pkg.org/badges/grand-total/ZeroOneDists?color=blue)](https://cran.r-project.org/package=ZeroOneDists)
 <!-- badges: end -->
 
-# ZeroOneDists <img src="man/Figures/logo.png" align="right" alt="" width="120" />
+# ZeroOneDists <img src="man/figures/logo.png" align="right" alt="" width="120" />
 
 
 In this package are available new Zero One statistical distributions. With this package it is possible to estimate parameters and fit regression models within GAMLSS framework.
