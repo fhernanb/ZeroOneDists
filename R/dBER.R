@@ -14,12 +14,14 @@
 #' @param nu vector of the nu parameter.
 #' @param n number of random values to return.
 #' @param log,log.p logical; if TRUE, probabilities p are given as log(p).
-#' @param lower.tail logical; if TRUE (default), probabilities are \eqn{P[X <= x]}, otherwise, \eqn{P[X > x]}.
-#'
-#' @references
-#' Bayes, C. L., Bazán, J. L., & García, C. (2012). A new robust regression model for proportions. Bayesian Analysis, 7(4), 841-866.
+#' @param lower.tail logical; if TRUE (default), probabilities are
+#' \eqn{P[X <= x]}, otherwise, \eqn{P[X > x]}.
 #'
 #' @seealso \link{BER}.
+#'
+#' @references
+#' Bayes, C. L., Bazán, J. L., & García, C. (2012). A new robust
+#' regression model for proportions. Bayesian Analysis, 7(4), 841-866.
 #'
 #' @details
 #' The Beta Rectangular distribution with parameters \eqn{\mu}, \eqn{\sigma} and \eqn{\nu}
@@ -36,7 +38,7 @@
 #' @export
 #' @importFrom stats dbeta
 dBER <- function(x, mu, sigma, nu, log=FALSE) {
-  if (any(x < 0 | x > 1)) stop("x must be in the interval (0, 1)")
+  if (any(x < 0 | x > 1))   stop("x must be in the interval (0, 1)")
   if (any(mu < 0 | mu > 1)) stop("mu must be in the interval (0, 1)")
   if (any(sigma < 0))       stop("sigma must be positive")
   if (any(nu < 0 | nu > 1)) stop("nu must be in the interval [0, 1]")
