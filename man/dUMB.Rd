@@ -11,7 +11,7 @@ dUMB(x, mu = 1, log = FALSE)
 
 pUMB(q, mu = 1, lower.tail = TRUE, log.p = FALSE)
 
-qUMB(p, mu = 1)
+qUMB(p, mu, lower.tail = TRUE, log.p = FALSE)
 
 rUMB(n = 1, mu = 1)
 }
