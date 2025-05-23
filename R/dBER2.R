@@ -1,11 +1,10 @@
-#' Beta Rectangular distribution
-#'
-#' @author Karina Maria Garay, \email{kgarayo@unal.edu.co}
+#' Beta Rectangular distribution version 2
 #'
 #' @description
 #' These functions define the density, distribution function, quantile
 #' function and random generation for the Beta Rectangular distribution
-#' with parameters \eqn{\mu}, \eqn{\sigma} and \eqn{\nu}.
+#' with parameters \eqn{\mu}, \eqn{\sigma} and \eqn{\nu}
+#' reparameterized to ensure \eqn{E(X)=\mu}.
 #'
 #' @param x,q vector of (non-negative integer) quantiles.
 #' @param p vector of probabilities.
@@ -17,7 +16,7 @@
 #' @param lower.tail logical; if TRUE (default), probabilities are
 #' \eqn{P[X <= x]}, otherwise, \eqn{P[X > x]}.
 #'
-#' @seealso \link{BER}.
+#' @seealso \link{BER2}.
 #'
 #' @references
 #' Bayes, C. L., Bazán, J. L., & García, C. (2012). A new robust
@@ -33,50 +32,41 @@
 #' The function \eqn{b(.)} corresponds to the traditional beta distribution
 #' that can be computed by \code{dbeta(x, shape1=mu*sigma, shape2=(1-mu)*sigma)}.
 #'
-#' @example examples/examples_dBER.R
+#' @example examples/examples_dBER2.R
 #'
 #' @export
-#' @importFrom stats dbeta
-dBER <- function(x, mu, sigma, nu, log=FALSE) {
+dBER2 <- function(x, mu, sigma, nu, log = FALSE) {
   if (any(mu < 0 | mu > 1)) stop("mu must be in the interval (0, 1)")
-  if (any(sigma < 0))       stop("sigma must be positive")
+  if (any(sigma <= 0))      stop("sigma must be positive")
   if (any(nu < 0 | nu > 1)) stop("nu must be in the interval [0, 1]")
 
-  B_value <- dbeta(x, shape1=mu*sigma, shape2=(1-mu)*sigma)
-  res <- ifelse(x<0 | x>1, 0, nu + (1 - nu) * B_value)
+  par <- gamma_alpha_2_mu_theta(mu, nu)
+  res <- dBER(x=x, mu=par[, 1], sigma=sigma, nu=par[, 2])
 
-  if(log)
-    return(log(res))
-  else
-    return(res)
+  if (log)
+    res <- log(res)
+  return(res)
 }
 #' @export
-#' @importFrom stats pbeta
-#' @rdname dBER
-pBER <- function(q, mu, sigma, nu, lower.tail = TRUE, log.p = FALSE) {
+#' @rdname dBER2
+pBER2 <- function(q, mu, sigma, nu, lower.tail=TRUE, log.p=FALSE) {
   if (any(mu < 0 | mu > 1)) stop("mu must be in the interval (0, 1)")
-  if (any(sigma < 0))       stop("sigma must be positive")
+  if (any(sigma <= 0))      stop("sigma must be positive")
   if (any(nu < 0 | nu > 1)) stop("nu must be in the interval [0, 1]")
 
-  B_value <- pbeta(q=q, shape1=mu*sigma, shape2=(1-mu)*sigma)
-  cdf <- ifelse(q<0, 0,
-                ifelse(q>1, 1, nu * q + (1 - nu) * B_value))
+  par <- gamma_alpha_2_mu_theta(mu, nu)
+  cdf <- pBER(q=q, mu=par[, 1], sigma=sigma, nu=par[, 2])
 
-  if (lower.tail == TRUE)
-    cdf <- cdf
-  else cdf = 1 - cdf
-  if (log.p == FALSE)
-    cdf <- cdf
-  else cdf <- log(cdf)
+  if (!lower.tail) cdf <- 1 - cdf
+  if (log.p) cdf <- log(cdf)
   return(cdf)
 }
 #' @export
-#' @importFrom stats pbeta uniroot
-#' @rdname dBER
-qBER <- function(p, mu, sigma, nu, lower.tail = TRUE, log.p = FALSE) {
-  if (any(p < 0 | p > 1))   stop("p must be in the interval (0, 1)")
+#' @rdname dBER2
+qBER2 <- function(p, mu, sigma, nu, lower.tail = TRUE, log.p = FALSE) {
+  if (any(p < 0 | p > 1))   stop("x must be in the interval (0, 1)")
   if (any(mu < 0 | mu > 1)) stop("mu must be in the interval (0, 1)")
-  if (any(sigma < 0))       stop("sigma must be positive")
+  if (any(sigma <= 0))      stop("sigma must be positive")
   if (any(nu < 0 | nu > 1)) stop("nu must be in the interval [0, 1]")
 
   if (log.p == TRUE)
@@ -86,24 +76,33 @@ qBER <- function(p, mu, sigma, nu, lower.tail = TRUE, log.p = FALSE) {
     p <- p
   else p <- 1 - p
 
-  aux_fun <- function(x, p, mu, sigma, nu){
-    res <- p-nu*x-(1-nu)*pbeta(q=x, shape1=mu*sigma, shape2=(1-mu)*sigma)
-    return(res)
-  }
-  res <- uniroot(aux_fun, interval=c(0, 1),
-                 p=p, mu=mu, sigma=sigma, nu=nu)$root
+  par <- gamma_alpha_2_mu_theta(mu, nu)
+  res <- qBER(p=p, mu=par[, 1], sigma=sigma, nu=par[, 2])
 
   return(res)
 }
-qBER <- Vectorize(qBER)
 #' @export
 #' @importFrom stats runif
-#' @rdname dBER
-rBER <- function(n, mu, sigma, nu){
+#' @rdname dBER2
+rBER2 <- function(n, mu, sigma, nu) {
   if (any(mu < 0 | mu > 1)) stop("mu must be in the interval (0, 1)")
   if (any(sigma < 0))       stop("sigma must be positive")
   if (any(nu < 0 | nu > 1)) stop("nu must be in the interval [0, 1]")
+
+  par <- gamma_alpha_2_mu_theta(mu, nu)
   u <- runif(n)
-  res <- qBER(p=u, mu=mu, sigma=sigma, nu=nu)
+  res <- qBER(p=u, mu=par[, 1], sigma=sigma, nu=par[, 2])
   return(res)
+}
+gamma_alpha_2_mu_theta <- function(gamma, alpha) {
+  # Compute theta from gamma and alpha
+  theta <- alpha * (1 - abs(2 * gamma - 1))
+
+  # Compute mu using the expression involving theta
+  numerator <- gamma - 0.5 * theta
+  denominator <- 1 - theta
+  mu <- numerator / denominator
+
+  # Return a named vector
+  return(cbind(mu, theta))
 }

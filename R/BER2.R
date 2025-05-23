@@ -1,6 +1,4 @@
-#' Beta Rectangular distribution
-#'
-#' @author Karina Maria Garay, \email{kgarayo@unal.edu.co}
+#' Beta Rectangular distribution version 2
 #'
 #' @description
 #' The Beta Rectangular family
@@ -9,7 +7,7 @@
 #' @param sigma.link defines the sigma.link, with "log" link as the default for the sigma parameter.
 #' @param nu.link defines the nu.link, with "logit" link as the default for the nu parameter.
 #'
-#' @seealso \link{dBER}
+#' @seealso \link{dBER2}
 #'
 #' @details
 #' The Beta Rectangular distribution with parameters \code{mu},
@@ -21,9 +19,9 @@
 #' The function \eqn{b(.)} corresponds to the traditional beta distribution
 #' that can be computed by \code{dbeta(x, shape1=mu*sigma, shape2=(1-mu)*sigma)}.
 #'
-#' @returns Returns a gamlss.family object which can be used to fit a BER distribution in the \code{gamlss()} function.
+#' @returns Returns a gamlss.family object which can be used to fit a BER2 distribution in the \code{gamlss()} function.
 #'
-#' @example examples/examples_BER.R
+#' @example examples/examples_BER2.R
 #'
 #' @references
 #' Bayes, C. L., Bazán, J. L., & García, C. (2012). A new robust regression model for proportions. Bayesian Analysis, 7(4), 841-866.
@@ -31,7 +29,7 @@
 #' @importFrom gamlss.dist checklink
 #' @importFrom gamlss rqres.plot
 #' @export
-BER <- function (mu.link="logit", sigma.link="log", nu.link="logit"){
+BER2 <- function (mu.link="logit", sigma.link="log", nu.link="logit"){
   mstats <- checklink("mu.link", "Beta Rectangular",
                       substitute(mu.link), c("logit", "own"))
   dstats <- checklink("sigma.link", "Beta Rectangular",
@@ -39,7 +37,7 @@ BER <- function (mu.link="logit", sigma.link="log", nu.link="logit"){
   vstats <- checklink("nu.link", "Beta Rectangular",
                       substitute(nu.link), c("logit", "own"))
 
-  structure(list(family=c("BER", "Beta Rectangular"),
+  structure(list(family=c("BER2", "Beta Rectangular"),
                  parameters=list(mu=TRUE, sigma=TRUE, nu=TRUE),
                  nopar=3,
                  type="Continuous",
@@ -62,7 +60,7 @@ BER <- function (mu.link="logit", sigma.link="log", nu.link="logit"){
 
                  # First derivates
                  dldm = function(y, mu, sigma, nu) {
-                   dm   <- gamlss::numeric.deriv(dBER(y, mu, sigma, nu, log=TRUE),
+                   dm   <- gamlss::numeric.deriv(dBER2(y, mu, sigma, nu, log=TRUE),
                                                  theta="mu",
                                                  delta=0.00001)
                    dldm <- as.vector(attr(dm, "gradient"))
@@ -70,7 +68,7 @@ BER <- function (mu.link="logit", sigma.link="log", nu.link="logit"){
                  },
 
                  dldd = function(y, mu, sigma, nu) {
-                   dd   <- gamlss::numeric.deriv(dBER(y, mu, sigma, nu, log=TRUE),
+                   dd   <- gamlss::numeric.deriv(dBER2(y, mu, sigma, nu, log=TRUE),
                                                  theta="sigma",
                                                  delta=0.00001)
                    dldd <- as.vector(attr(dd, "gradient"))
@@ -78,7 +76,7 @@ BER <- function (mu.link="logit", sigma.link="log", nu.link="logit"){
                  },
 
                  dldv = function(y, mu, sigma, nu) {
-                   dv   <- gamlss::numeric.deriv(dBER(y, mu, sigma, nu, log=TRUE),
+                   dv   <- gamlss::numeric.deriv(dBER2(y, mu, sigma, nu, log=TRUE),
                                                  theta="nu",
                                                  delta=0.00001)
                    dldv <- as.vector(attr(dv, "gradient"))
@@ -88,7 +86,7 @@ BER <- function (mu.link="logit", sigma.link="log", nu.link="logit"){
                  # Second derivates
 
                  d2ldm2 = function(y, mu, sigma, nu) {
-                   dm   <- gamlss::numeric.deriv(dBER(y, mu, sigma, nu, log=TRUE),
+                   dm   <- gamlss::numeric.deriv(dBER2(y, mu, sigma, nu, log=TRUE),
                                                  theta="mu",
                                                  delta=0.00001)
                    dldm <- as.vector(attr(dm, "gradient"))
@@ -98,7 +96,7 @@ BER <- function (mu.link="logit", sigma.link="log", nu.link="logit"){
                  },
 
                  d2ldd2  = function(y, mu, sigma, nu) {
-                   dd   <- gamlss::numeric.deriv(dBER(y, mu, sigma, nu, log=TRUE),
+                   dd   <- gamlss::numeric.deriv(dBER2(y, mu, sigma, nu, log=TRUE),
                                                  theta="sigma",
                                                  delta=0.00001)
                    dldd <- as.vector(attr(dd, "gradient"))
@@ -108,7 +106,7 @@ BER <- function (mu.link="logit", sigma.link="log", nu.link="logit"){
                  },
 
                  d2ldv2  = function(y, mu, sigma, nu) {
-                   dv   <- gamlss::numeric.deriv(dBER(y, mu, sigma, nu, log=TRUE),
+                   dv   <- gamlss::numeric.deriv(dBER2(y, mu, sigma, nu, log=TRUE),
                                                  theta="nu",
                                                  delta=0.00001)
                    dldv <- as.vector(attr(dv, "gradient"))
@@ -118,11 +116,11 @@ BER <- function (mu.link="logit", sigma.link="log", nu.link="logit"){
                  },
 
                  d2ldmdd = function(y, mu, sigma, nu) {
-                   dm   <- gamlss::numeric.deriv(dBER(y, mu, sigma, nu, log=TRUE),
+                   dm   <- gamlss::numeric.deriv(dBER2(y, mu, sigma, nu, log=TRUE),
                                                  theta="mu",
                                                  delta=0.00001)
                    dldm <- as.vector(attr(dm, "gradient"))
-                   dd   <- gamlss::numeric.deriv(dBER(y, mu, sigma, nu, log=TRUE),
+                   dd   <- gamlss::numeric.deriv(dBER2(y, mu, sigma, nu, log=TRUE),
                                                  theta="sigma",
                                                  delta=0.00001)
                    dldd <- as.vector(attr(dd, "gradient"))
@@ -133,11 +131,11 @@ BER <- function (mu.link="logit", sigma.link="log", nu.link="logit"){
                  },
 
                  d2ldmdv = function(y, mu, sigma, nu) {
-                   dm   <- gamlss::numeric.deriv(dBER(y, mu, sigma, nu, log=TRUE),
+                   dm   <- gamlss::numeric.deriv(dBER2(y, mu, sigma, nu, log=TRUE),
                                                  theta="mu",
                                                  delta=0.00001)
                    dldm <- as.vector(attr(dm, "gradient"))
-                   dv   <- gamlss::numeric.deriv(dBER(y, mu, sigma, nu, log=TRUE),
+                   dv   <- gamlss::numeric.deriv(dBER2(y, mu, sigma, nu, log=TRUE),
                                                  theta="nu",
                                                  delta=0.00001)
                    dldv <- as.vector(attr(dv, "gradient"))
@@ -148,11 +146,11 @@ BER <- function (mu.link="logit", sigma.link="log", nu.link="logit"){
                  },
 
                  d2ldddv = function(y, mu, sigma, nu) {
-                   dd   <- gamlss::numeric.deriv(dBER(y, mu, sigma, nu, log=TRUE),
+                   dd   <- gamlss::numeric.deriv(dBER2(y, mu, sigma, nu, log=TRUE),
                                                  theta="sigma",
                                                  delta=0.00001)
                    dldd <- as.vector(attr(dd, "gradient"))
-                   dv   <- gamlss::numeric.deriv(dBER(y, mu, sigma, nu, log=TRUE),
+                   dv   <- gamlss::numeric.deriv(dBER2(y, mu, sigma, nu, log=TRUE),
                                                  theta="nu",
                                                  delta=0.00001)
                    dldv <- as.vector(attr(dv, "gradient"))
@@ -162,8 +160,8 @@ BER <- function (mu.link="logit", sigma.link="log", nu.link="logit"){
                    d2ldmdv
                  },
 
-                 G.dev.incr = function(y, mu, sigma, nu, ...) -2*dBER(y, mu, sigma, nu, log=TRUE),
-                 rqres      = expression(rqres(pfun="pBER", type="Continuous", y=y, mu=mu, sigma=sigma, nu=nu)),
+                 G.dev.incr = function(y, mu, sigma, nu, ...) -2*dBER2(y, mu, sigma, nu, log=TRUE),
+                 rqres      = expression(rqres(pfun="pBER2", type="Continuous", y=y, mu=mu, sigma=sigma, nu=nu)),
 
                  mu.initial    = expression(mu    <- rep(0.5, length(y))),
                  sigma.initial = expression(sigma <- rep(0.5, length(y))),
@@ -173,7 +171,7 @@ BER <- function (mu.link="logit", sigma.link="log", nu.link="logit"){
                  sigma.valid = function(sigma) all(sigma > 0),
                  nu.valid    = function(nu)    all(nu > 0 & nu < 1),
 
-                 mean = function(mu, nu) {nu/2 + (1-nu)*mu},
+                 mean = function(mu) mu,
 
                  y.valid = function(y) all(y > 0 & y < 1)
 

@@ -1,16 +1,18 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
 <url><loc>/404.html</loc></url>
-<url><loc>/authors.html</loc></url>
-<url><loc>/index.html</loc></url>
 <url><loc>/LICENSE-text.html</loc></url>
 <url><loc>/LICENSE.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/index.html</loc></url>
 <url><loc>/reference/BER.html</loc></url>
+<url><loc>/reference/BER2.html</loc></url>
+<url><loc>/reference/UHLG.html</loc></url>
+<url><loc>/reference/UPHN.html</loc></url>
 <url><loc>/reference/dBER.html</loc></url>
+<url><loc>/reference/dBER2.html</loc></url>
 <url><loc>/reference/dUHLG.html</loc></url>
 <url><loc>/reference/dUMB.html</loc></url>
 <url><loc>/reference/dUPHN.html</loc></url>
 <url><loc>/reference/index.html</loc></url>
-<url><loc>/reference/UHLG.html</loc></url>
-<url><loc>/reference/UPHN.html</loc></url>
 </urlset>
 
