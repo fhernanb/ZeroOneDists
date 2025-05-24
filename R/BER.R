@@ -166,7 +166,7 @@ BER <- function (mu.link="logit", sigma.link="log", nu.link="logit"){
                  rqres      = expression(rqres(pfun="pBER", type="Continuous", y=y, mu=mu, sigma=sigma, nu=nu)),
 
                  mu.initial    = expression(mu    <- rep(0.5, length(y))),
-                 sigma.initial = expression(sigma <- rep(0.5, length(y))),
+                 sigma.initial = expression(sigma <- rep(1.5, length(y))),
                  nu.initial    = expression(nu    <- rep(0.5, length(y))),
 
                  mu.valid    = function(mu)    all(mu > 0 & mu < 1),

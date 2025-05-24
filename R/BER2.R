@@ -164,12 +164,12 @@ BER2 <- function (mu.link="logit", sigma.link="log", nu.link="logit"){
                  rqres      = expression(rqres(pfun="pBER2", type="Continuous", y=y, mu=mu, sigma=sigma, nu=nu)),
 
                  mu.initial    = expression(mu    <- rep(0.5, length(y))),
-                 sigma.initial = expression(sigma <- rep(0.5, length(y))),
+                 sigma.initial = expression(sigma <- rep(1.5, length(y))),
                  nu.initial    = expression(nu    <- rep(0.5, length(y))),
 
-                 mu.valid    = function(mu)    all(mu > 0 & mu < 1),
+                 mu.valid    = function(mu)    all(mu >= 0 & mu <= 1),
                  sigma.valid = function(sigma) all(sigma > 0),
-                 nu.valid    = function(nu)    all(nu > 0 & nu < 1),
+                 nu.valid    = function(nu)    all(nu >= 0 & nu <= 1),
 
                  mean = function(mu) mu,
 
