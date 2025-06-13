@@ -14,7 +14,8 @@ BER(mu.link = "logit", sigma.link = "log", nu.link = "logit")
 \item{nu.link}{defines the nu.link, with "logit" link as the default for the nu parameter.}
 }
 \value{
-Returns a gamlss.family object which can be used to fit a BER distribution in the \code{gamlss()} function.
+Returns a gamlss.family object which can be used to fit a
+BER distribution in the \code{gamlss()} function.
 }
 \description{
 The Beta Rectangular family
@@ -73,7 +74,8 @@ summary(mod2)
 
 }
 \references{
-Bayes, C. L., Bazán, J. L., & García, C. (2012). A new robust regression model for proportions. Bayesian Analysis, 7(4), 841-866.
+Bayes, C. L., Bazán, J. L., & García, C. (2012). A new robust
+regression model for proportions. Bayesian Analysis, 7(4), 841-866.
 }
 \seealso{
 \link{dBER}

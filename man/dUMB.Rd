@@ -38,7 +38,7 @@ with parameter \eqn{\mu}.
 The Unit Maxwell-Boltzmann distribution with parameter \eqn{\mu}
 has a support in \eqn{(0, 1)} and density given by
 
-\eqn{f(x| \mu) = \frac{2 \mu}{(\mu+(2-\mu)x)^2} }
+\eqn{f(x| \mu) = \frac{\sqrt(2/\pi) \log^2(1/x) \exp(-\frac{\log^2(1/x)}{2\mu^2})}{\mu^3 x} }
 
 for \eqn{0 < x < 1} and \eqn{\mu > 0}.
 }
@@ -106,9 +106,14 @@ curve(dUMB(x, mu=0.5),
 
 }
 \references{
-Bicher, C., Bakouch, H. S., Biçor, H. D., Alomair, G.,
-Hussain, T., y Almohisen, A. (2024). Unit Maxwell-Boltzmann Distribution and
-Its Application to Concentrations Pollutant Data. Axioms, 13(4), 226.
+Biçer, C., Bakouch, H. S., Biçer, H. D., Alomair, G.,
+Hussain, T., y Almohisen, A. (2024).
+Unit Maxwell-Boltzmann Distribution and Its Application to
+Concentrations Pollutant Data.
+Axioms, 13(4), 226.
+}
+\seealso{
+\link{UMB}.
 }
 \author{
 David Villegas Ceballos, \email{david.villegas1@udea.edu.co}

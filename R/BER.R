@@ -21,12 +21,14 @@
 #' The function \eqn{b(.)} corresponds to the traditional beta distribution
 #' that can be computed by \code{dbeta(x, shape1=mu*sigma, shape2=(1-mu)*sigma)}.
 #'
-#' @returns Returns a gamlss.family object which can be used to fit a BER distribution in the \code{gamlss()} function.
+#' @returns Returns a gamlss.family object which can be used to fit a
+#' BER distribution in the \code{gamlss()} function.
 #'
 #' @example examples/examples_BER.R
 #'
 #' @references
-#' Bayes, C. L., Bazán, J. L., & García, C. (2012). A new robust regression model for proportions. Bayesian Analysis, 7(4), 841-866.
+#' Bayes, C. L., Bazán, J. L., & García, C. (2012). A new robust
+#' regression model for proportions. Bayesian Analysis, 7(4), 841-866.
 #'
 #' @importFrom gamlss.dist checklink
 #' @importFrom gamlss rqres.plot

@@ -15,16 +15,20 @@
 #' @param lower.tail logical; if TRUE (default), probabilities are
 #' \eqn{P[X <= x]}, otherwise, \eqn{P[X > x]}.
 #'
+#' @seealso \link{UMB}.
+#'
 #' @references
-#' Bicher, C., Bakouch, H. S., Biçor, H. D., Alomair, G.,
-#' Hussain, T., y Almohisen, A. (2024). Unit Maxwell-Boltzmann Distribution and
-#' Its Application to Concentrations Pollutant Data. Axioms, 13(4), 226.
+#' Biçer, C., Bakouch, H. S., Biçer, H. D., Alomair, G.,
+#' Hussain, T., y Almohisen, A. (2024).
+#' Unit Maxwell-Boltzmann Distribution and Its Application to
+#' Concentrations Pollutant Data.
+#' Axioms, 13(4), 226.
 #'
 #' @details
 #' The Unit Maxwell-Boltzmann distribution with parameter \eqn{\mu}
 #' has a support in \eqn{(0, 1)} and density given by
 #'
-#' \eqn{f(x| \mu) = \frac{2 \mu}{(\mu+(2-\mu)x)^2} }
+#' \eqn{f(x| \mu) = \frac{\sqrt(2/\pi) \log^2(1/x) \exp(-\frac{\log^2(1/x)}{2\mu^2})}{\mu^3 x} }
 #'
 #' for \eqn{0 < x < 1} and \eqn{\mu > 0}.
 #'
@@ -34,8 +38,11 @@
 dUMB <- function(x, mu = 1, log = FALSE) {
   if (any(mu <= 0)) stop("parameter mu must be positive!")
 
-  log_term <- log(1 / x)
-  res <- 0.5 * log(2 / pi) + 2 * log(log_term) - 3 * log(mu) - log(x) - (log_term^2) / (2 * mu^2)
+  # log_term <- log(1/x)
+  # res <- 0.5 * log(2 / pi) + 2 * log(log_term) - 3 * log(mu) - log(x) - (log_term^2) / (2 * mu^2)
+
+  res <- ifelse(x < 0 | x > 1, -99999,
+                0.5*log(2/pi)+2*log(log(1/x))-3*log(mu)-log(x)-((log(1/x))^2)/(2*mu^2))
 
   if(log)
     return(res)
@@ -80,10 +87,13 @@ qUMB <- function(p, mu, lower.tail = TRUE, log.p = FALSE) {
     p <- p
   else p <- 1 - p
 
+  # Begin auxiliary function
   aux_fun <- function(x, p, mu){
     res <- p - pUMB(x, mu)
     return(res)
   }
+  # End auxiliary function
+
   res <- uniroot(aux_fun, interval=c(0, 1),
                  p=p, mu=mu)$root
 
@@ -94,7 +104,8 @@ qUMB <- Vectorize(qUMB)
 #' @importFrom stats runif
 #' @rdname dUMB
 rUMB <- function(n = 1, mu = 1) {
-  if (mu <= 0) stop("parameter mu must be positive!")
+  if (any(mu <= 0)) stop("parameter mu must be positive!")
   u <- runif(n)
-  qUMB(u, mu)
+  if (length(mu) == 1) mu <- rep(mu, n)
+  sapply(1:n, function(i) qUMB(u[i],mu[i]))
 }

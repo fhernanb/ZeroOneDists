@@ -3,6 +3,7 @@
 export(BER)
 export(BER2)
 export(UHLG)
+export(UMB)
 export(UPHN)
 export(dBER)
 export(dBER2)
