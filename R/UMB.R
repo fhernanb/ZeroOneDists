@@ -1,5 +1,7 @@
 #' Unit Maxwell-Boltzmann family
 #'
+#' @author David Villegas Ceballos, \email{david.villegas1@udea.edu.co}
+#'
 #' @description
 #' The function \code{UMB()} defines the Unit Maxwell-Boltzmann distribution, a one parameter
 #' distribution, for a \code{gamlss.family} object to be used in GAMLSS fitting

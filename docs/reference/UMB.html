@@ -89,6 +89,10 @@ Axioms, 13(4), 226.</p>
     <h2>See also</h2>
     <div class="dont-index"><p><a href="dUMB.html">dUMB</a></p></div>
     </div>
+    <div id="author">
+    <h2>Author</h2>
+    <p>David Villegas Ceballos, <a href="mailto:david.villegas1@udea.edu.co">david.villegas1@udea.edu.co</a></p>
+    </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
@@ -99,8 +103,8 @@ Axioms, 13(4), 226.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Fitting the model</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.gamlss.com/" class="external-link">gamlss</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">mod1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gamlss/man/gamlss.html" class="external-link">gamlss</a></span><span class="op">(</span><span class="va">y</span><span class="op">~</span><span class="fl">1</span>, family<span class="op">=</span><span class="va">UMB</span>,</span></span>
-<span class="r-in"><span>               control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/gamlss/man/gamlss.control.html" class="external-link">gamlss.control</a></span><span class="op">(</span>n.cyc<span class="op">=</span><span class="fl">500</span>, trace<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">mod1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gamlss/man/gamlss.html" class="external-link">gamlss</a></span><span class="op">(</span><span class="va">y</span><span class="op">~</span><span class="fl">1</span>, family<span class="op">=</span><span class="va">UMB</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GAMLSS-RS iteration 1: Global Deviance = -271.1999 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Extracting the fitted values for mu</span></span></span>
 <span class="r-in"><span><span class="co"># using the inverse link function</span></span></span>
@@ -121,9 +125,7 @@ Axioms, 13(4), 226.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">datos</span> <span class="op">&lt;-</span> <span class="fu">gendat</span><span class="op">(</span>n<span class="op">=</span><span class="fl">300</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gamlss/man/gamlss.html" class="external-link">gamlss</a></span><span class="op">(</span><span class="va">y</span><span class="op">~</span><span class="va">x1</span>,</span></span>
-<span class="r-in"><span>               family<span class="op">=</span><span class="va">UMB</span>, data<span class="op">=</span><span class="va">datos</span>,</span></span>
-<span class="r-in"><span>               control<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/gamlss/man/gamlss.control.html" class="external-link">gamlss.control</a></span><span class="op">(</span>n.cyc<span class="op">=</span><span class="fl">500</span>, trace<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gamlss/man/gamlss.html" class="external-link">gamlss</a></span><span class="op">(</span><span class="va">y</span><span class="op">~</span><span class="va">x1</span>, family<span class="op">=</span><span class="va">UMB</span>, data<span class="op">=</span><span class="va">datos</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GAMLSS-RS iteration 1: Global Deviance = -389.3838 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GAMLSS-RS iteration 2: Global Deviance = -389.3839 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod2</span><span class="op">)</span></span></span>
@@ -131,9 +133,7 @@ Axioms, 13(4), 226.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ******************************************************************</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Family:  c("UMB", "Unit Maxwell-Boltzmann") </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call:  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> gamlss(formula = y ~ x1, family = UMB, data = datos, control = gamlss.control(n.cyc = 500,  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     trace = TRUE)) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Call:  gamlss(formula = y ~ x1, family = UMB, data = datos) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Fitting method: RS() </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -156,6 +156,184 @@ Axioms, 13(4), 226.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             AIC:     -385.3839 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             SBC:     -377.9763 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ******************************************************************</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Example 3</span></span></span>
+<span class="r-in"><span><span class="co"># The first dataset measured the concentration of air pollutant CO</span></span></span>
+<span class="r-in"><span><span class="co"># in Alberta, Canada from the Edmonton Central (downtown)</span></span></span>
+<span class="r-in"><span><span class="co"># Monitoring Unit (EDMU) station during 1995.</span></span></span>
+<span class="r-in"><span><span class="co"># Measurements are listed for the period 1976–1995.</span></span></span>
+<span class="r-in"><span><span class="co"># Taken from Bicer et al. (2024) page 12.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">data1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.19</span>, <span class="fl">0.20</span>, <span class="fl">0.20</span>, <span class="fl">0.27</span>, <span class="fl">0.30</span>,</span></span>
+<span class="r-in"><span>           <span class="fl">0.37</span>, <span class="fl">0.30</span>, <span class="fl">0.25</span>, <span class="fl">0.23</span>, <span class="fl">0.23</span>,</span></span>
+<span class="r-in"><span>           <span class="fl">0.26</span>, <span class="fl">0.23</span>, <span class="fl">0.19</span>, <span class="fl">0.21</span>, <span class="fl">0.20</span>,</span></span>
+<span class="r-in"><span>           <span class="fl">0.22</span>, <span class="fl">0.21</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>, <span class="fl">0.19</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">mod3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gamlss/man/gamlss.html" class="external-link">gamlss</a></span><span class="op">(</span><span class="va">data1</span> <span class="op">~</span> <span class="fl">1</span>, family<span class="op">=</span><span class="va">UMB</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GAMLSS-RS iteration 1: Global Deviance = -38.5724 </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Extracting the fitted values for mu</span></span></span>
+<span class="r-in"><span><span class="co"># using the inverse link function</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">mod3</span>, what<span class="op">=</span><span class="st">"mu"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.8452875 </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Extraction of the log likelihood</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/logLik.html" class="external-link">logLik</a></span><span class="op">(</span><span class="va">mod3</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 'log Lik.' 19.28621 (df=1)</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Example 4</span></span></span>
+<span class="r-in"><span><span class="co"># The second data set measured air quality monitoring of the</span></span></span>
+<span class="r-in"><span><span class="co"># annual average concentration of the pollutant benzo(a)pyrene (BaP).</span></span></span>
+<span class="r-in"><span><span class="co"># The data were obtained from the Edmonton Central (downtown)</span></span></span>
+<span class="r-in"><span><span class="co"># Monitoring Unit (EDMU) location in Alberta, Canada, in 1995.</span></span></span>
+<span class="r-in"><span><span class="co"># Taken from Bicer et al. (2024) page 12.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">data2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.22</span>, <span class="fl">0.20</span>, <span class="fl">0.25</span>, <span class="fl">0.15</span>, <span class="fl">0.38</span>,</span></span>
+<span class="r-in"><span>           <span class="fl">0.18</span>, <span class="fl">0.52</span>, <span class="fl">0.27</span>, <span class="fl">0.27</span>, <span class="fl">0.27</span>,</span></span>
+<span class="r-in"><span>           <span class="fl">0.13</span>, <span class="fl">0.15</span>, <span class="fl">0.24</span>, <span class="fl">0.37</span>, <span class="fl">0.20</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">mod4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gamlss/man/gamlss.html" class="external-link">gamlss</a></span><span class="op">(</span><span class="va">data2</span> <span class="op">~</span> <span class="fl">1</span>, family<span class="op">=</span><span class="va">UMB</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GAMLSS-RS iteration 1: Global Deviance = -24.86 </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Extracting the fitted values for mu</span></span></span>
+<span class="r-in"><span><span class="co"># using the inverse link function</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">mod4</span>, what<span class="op">=</span><span class="st">"mu"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.8593051 </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Extraction of the log likelihood</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/logLik.html" class="external-link">logLik</a></span><span class="op">(</span><span class="va">mod4</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 'log Lik.' 12.42998 (df=1)</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Replicating figure 5 from Bicer et al. (2024)</span></span></span>
+<span class="r-in"><span><span class="co"># Hist and estimated pdf of Data-I and Data-II</span></span></span>
+<span class="r-in"><span><span class="va">mu1</span> <span class="op">&lt;-</span> <span class="fl">0.8452875</span></span></span>
+<span class="r-in"><span><span class="va">mu2</span> <span class="op">&lt;-</span> <span class="fl">0.8593051</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Data-I</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">data1</span>, freq <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>     xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1.0</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>     main <span class="op">=</span> <span class="st">"Histogram of Data-I"</span>,</span></span>
+<span class="r-in"><span>     xlab <span class="op">=</span> <span class="st">"y"</span>, ylab <span class="op">=</span> <span class="st">"f(y)"</span>,</span></span>
+<span class="r-in"><span>     col <span class="op">=</span> <span class="st">"burlywood1"</span>,</span></span>
+<span class="r-in"><span>     border <span class="op">=</span> <span class="st">"darkgoldenrod4"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/curve.html" class="external-link">curve</a></span><span class="op">(</span><span class="fu"><a href="dUMB.html">dUMB</a></span><span class="op">(</span><span class="va">x</span>, mu <span class="op">=</span> <span class="va">mu1</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>      col <span class="op">=</span> <span class="st">"blue"</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">"topright"</span>, legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"UMB"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>       col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"blue"</span><span class="op">)</span>, lwd <span class="op">=</span> <span class="fl">2</span>, bty <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Data-II</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">data2</span>, freq <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>     xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1.0</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">6</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>     main <span class="op">=</span> <span class="st">"Histogram of Data-II"</span>,</span></span>
+<span class="r-in"><span>     xlab <span class="op">=</span> <span class="st">"y"</span>, ylab <span class="op">=</span> <span class="st">"f(y)"</span>,</span></span>
+<span class="r-in"><span>     col <span class="op">=</span> <span class="st">"burlywood1"</span>,</span></span>
+<span class="r-in"><span>     border <span class="op">=</span> <span class="st">"darkgoldenrod4"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/curve.html" class="external-link">curve</a></span><span class="op">(</span><span class="fu"><a href="dUMB.html">dUMB</a></span><span class="op">(</span><span class="va">x</span>, mu <span class="op">=</span> <span class="va">mu2</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>      col <span class="op">=</span> <span class="st">"blue"</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">"topright"</span>,</span></span>
+<span class="r-in"><span>       legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"UMB"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>       col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"blue"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>       lwd <span class="op">=</span> <span class="fl">2</span>,</span></span>
+<span class="r-in"><span>       bty <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="UMB-1.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Example 5</span></span></span>
+<span class="r-in"><span><span class="co"># The third dataset measured the concentration of sulphate</span></span></span>
+<span class="r-in"><span><span class="co"># in Calgary from 31 different periods during 1995.</span></span></span>
+<span class="r-in"><span><span class="co"># Taken from Bicer et al. (2024) page 13.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">data3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.048</span>, <span class="fl">0.013</span>, <span class="fl">0.040</span>, <span class="fl">0.082</span>, <span class="fl">0.073</span>, <span class="fl">0.732</span>, <span class="fl">0.302</span>,</span></span>
+<span class="r-in"><span>           <span class="fl">0.728</span>, <span class="fl">0.305</span>, <span class="fl">0.322</span>,  <span class="fl">0.045</span>, <span class="fl">0.261</span>, <span class="fl">0.192</span>,</span></span>
+<span class="r-in"><span>           <span class="fl">0.357</span>, <span class="fl">0.022</span>, <span class="fl">0.143</span>, <span class="fl">0.208</span>, <span class="fl">0.104</span>, <span class="fl">0.330</span>, <span class="fl">0.453</span>,</span></span>
+<span class="r-in"><span>           <span class="fl">0.135</span>, <span class="fl">0.114</span>, <span class="fl">0.049</span>, <span class="fl">0.011</span>, <span class="fl">0.008</span>, <span class="fl">0.037</span>, <span class="fl">0.034</span>,</span></span>
+<span class="r-in"><span>           <span class="fl">0.015</span>, <span class="fl">0.028</span>, <span class="fl">0.069</span>, <span class="fl">0.029</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">mod5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gamlss/man/gamlss.html" class="external-link">gamlss</a></span><span class="op">(</span><span class="va">data3</span> <span class="op">~</span> <span class="fl">1</span>, family<span class="op">=</span><span class="va">UMB</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GAMLSS-RS iteration 1: Global Deviance = -46.7013 </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Extracting the fitted values for mu</span></span></span>
+<span class="r-in"><span><span class="co"># using the inverse link function</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">mod5</span>, what<span class="op">=</span><span class="st">"mu"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    1.582003 </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Extraction of the log likelihood</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/logLik.html" class="external-link">logLik</a></span><span class="op">(</span><span class="va">mod5</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 'log Lik.' 23.35066 (df=1)</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Example 6</span></span></span>
+<span class="r-in"><span><span class="co"># The fourth dataset measured the concentration of pollutant CO in Alberta, Canada</span></span></span>
+<span class="r-in"><span><span class="co"># from the Calgary northwest (residential) monitoring unit (CRMU) station during 1995.</span></span></span>
+<span class="r-in"><span><span class="co"># Measurements are listed  for the period 1976-95.</span></span></span>
+<span class="r-in"><span><span class="co"># Taken from Bicer et al. (2024) page 13.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">data4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.16</span>, <span class="fl">0.19</span>, <span class="fl">0.24</span>, <span class="fl">0.25</span>, <span class="fl">0.30</span>, <span class="fl">0.41</span>, <span class="fl">0.40</span>,</span></span>
+<span class="r-in"><span>           <span class="fl">0.33</span>, <span class="fl">0.23</span>, <span class="fl">0.27</span>, <span class="fl">0.30</span>, <span class="fl">0.32</span>, <span class="fl">0.26</span>, <span class="fl">0.25</span>,</span></span>
+<span class="r-in"><span>           <span class="fl">0.22</span>, <span class="fl">0.22</span>, <span class="fl">0.18</span>, <span class="fl">0.18</span>, <span class="fl">0.20</span>, <span class="fl">0.23</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">mod6</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gamlss/man/gamlss.html" class="external-link">gamlss</a></span><span class="op">(</span><span class="va">data4</span> <span class="op">~</span> <span class="fl">1</span>, family<span class="op">=</span><span class="va">UMB</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GAMLSS-RS iteration 1: Global Deviance = -35.9771 </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Extracting the fitted values for mu</span></span></span>
+<span class="r-in"><span><span class="co"># using the inverse link function</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">mod6</span>, what<span class="op">=</span><span class="st">"mu"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0.8161202 </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Extraction of the log likelihood</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/logLik.html" class="external-link">logLik</a></span><span class="op">(</span><span class="va">mod6</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 'log Lik.' 17.98855 (df=1)</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Replicating figure 6 from Bicer et al. (2024)</span></span></span>
+<span class="r-in"><span><span class="co"># Hist and estimated pdf of Data-III and Data-IV</span></span></span>
+<span class="r-in"><span><span class="va">mu3</span> <span class="op">&lt;-</span> <span class="fl">1.582003</span></span></span>
+<span class="r-in"><span><span class="va">mu4</span> <span class="op">&lt;-</span> <span class="fl">0.8161202</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Data-III</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">data3</span>, freq <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>     xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1.0</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>     main <span class="op">=</span> <span class="st">"Histogram of Data-III"</span>,</span></span>
+<span class="r-in"><span>     xlab <span class="op">=</span> <span class="st">"y"</span>, ylab <span class="op">=</span> <span class="st">"f(y)"</span>,</span></span>
+<span class="r-in"><span>     col <span class="op">=</span> <span class="st">"burlywood1"</span>,</span></span>
+<span class="r-in"><span>     border <span class="op">=</span> <span class="st">"darkgoldenrod4"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/curve.html" class="external-link">curve</a></span><span class="op">(</span><span class="fu"><a href="dUMB.html">dUMB</a></span><span class="op">(</span><span class="va">x</span>, mu <span class="op">=</span> <span class="va">mu3</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>      col <span class="op">=</span> <span class="st">"blue"</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">"topright"</span>, legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"UMB"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>       col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"blue"</span><span class="op">)</span>, lwd <span class="op">=</span> <span class="fl">2</span>, bty <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Data-IV</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">data4</span>, freq <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>     xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1.0</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">6</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>     main <span class="op">=</span> <span class="st">"Histogram of Data-IV"</span>,</span></span>
+<span class="r-in"><span>     xlab <span class="op">=</span> <span class="st">"y"</span>, ylab <span class="op">=</span> <span class="st">"f(y)"</span>,</span></span>
+<span class="r-in"><span>     col <span class="op">=</span> <span class="st">"burlywood1"</span>,</span></span>
+<span class="r-in"><span>     border <span class="op">=</span> <span class="st">"darkgoldenrod4"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/curve.html" class="external-link">curve</a></span><span class="op">(</span><span class="fu"><a href="dUMB.html">dUMB</a></span><span class="op">(</span><span class="va">x</span>, mu <span class="op">=</span> <span class="va">mu4</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>      col <span class="op">=</span> <span class="st">"blue"</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">"topright"</span>,</span></span>
+<span class="r-in"><span>       legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"UMB"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>       col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"blue"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>       lwd <span class="op">=</span> <span class="fl">2</span>,</span></span>
+<span class="r-in"><span>       bty <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="UMB-2.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
